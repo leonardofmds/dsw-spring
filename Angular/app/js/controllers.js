@@ -1,5 +1,6 @@
 (function () {
     var app = angular.module('projeto.controllers', []);
+    var provaDaTela = ""
     var alunosNotas = {
         notas: [
             {
@@ -145,13 +146,13 @@
 
             for (var i = 0; i < alunosNotas.notas.length; i++) {
 
-                if (alunosNotas.notas[i].nomeAluno.toLowerCase().match(texto)) {
+                if (alunosNotas.notas[i].nomeAluno.toLowerCase().match(texto) && alunosNotas.notas[i].nomeProva == provaDaTela  ) {
                     alunosFiltrados.notas.push(alunosNotas.notas[i])
                 }
                 
             }
-            
-            $scope.alunosNotas = alunosFiltrados
+            console.log(alunosFiltrados)
+            $scope.notasProvaSel = alunosFiltrados.notas
         }
         $scope.alteracaoNota = function (idAluno) {
             var pesoTotal = 0;
@@ -182,6 +183,7 @@
         }
         $scope.testa = function (param) {
             var alunosDaProva = []
+            provaDaTela = param
             for (var i = 0; i < alunosNotas.notas.length; i++) {
                 var obj = alunosNotas.notas[i];
 
@@ -196,6 +198,7 @@
 
             $scope.notasProvaSel = alunosDaProva
             $scope.showNotas = true
+            console.log($scope.notasProvaSel)
         }
         $scope.alunosNotas = alunosNotas
         $scope.provasEscritas = provas
