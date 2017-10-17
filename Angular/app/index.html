@@ -1,20 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" type="text/css" href="https://code.getmdl.io/1.2.1/material.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css" />
 
     <title>Aula angular</title>
 </head>
-<body ng-app>
+
+<body ng-app="projeto">
     <div class="container">
         <div class="row">
-            <div class="col-md-4 col-md-offset-4">
-                <h1>Aula angular</h1>
-                <!-- coloque aqui o teu código -->
+            <div ng-controller="MainController">
+                <div ng-if="!showNotas">
+                    <table id="provas" class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                        <thead>
+                            <tr>
+                                <th class="mdl-data-table__cell--non-numeric">Codigo Prova</th>
+                                <th>Nome Prova</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="prova in provasEscritas.provasEscritas" ng-click="testa(prova.codigo)">
+                                <td>{{prova.codigo}}</td>
+                                <td>{{prova.nome}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div ng-if="showNotas">
+                    <button ng-click="toggleNotas(showNotas)" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                        Voltar
+                    </button>
+                    <input id="conteudoFiltroNome" type="text" ng-model="filtroNome" ng-change="filtraNome()">
+                    <table id="notasProvaSel" class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                        <thead>
+                            <tr>
+                                <th class="mdl-data-table__cell--non-numeric">Nome Aluno</th>
+                                <th ng-repeat="nota in notasProvaSel[0].pesosNotas track by $index">Nota questão: {{$index + 1}}</th>
+                                <th>Nota final</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="entradaAluno" ng-repeat="notaAluno in notasProvaSel" data-id-aluno={{notaAluno.idAluno}} data-peso-total={{notaAluno.pesoTotal}}>
+                                <td>{{notaAluno.nomeAluno}}</td>
+                                <td ng-repeat="peso in notaAluno.pesosNotas track by $index">
+                                    <input type="number" class="nota" data-peso-questao={{peso}} ng-model=notas ng-change="alteracaoNota({{notaAluno.idAluno}})">
+                                </td>
+                                <td>
+                                    <input class="notaFinal" data-id-aluno={{notaAluno.idAluno}} type="number" maxlength="3"
+                                        readonly>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button ng-click="toggleNotas(showNotas)" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                        Salvar
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -24,4 +73,5 @@
     <script src="js/controllers.js"></script>
     <script src="js/directives.js"></script>
 </body>
+
 </html>
