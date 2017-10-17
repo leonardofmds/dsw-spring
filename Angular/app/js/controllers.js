@@ -1,26 +1,27 @@
 (function () {
     var app = angular.module('projeto.controllers', []);
     var provaDaTela = ""
+    
     var alunosNotas = {
         notas: [
             {
                 idAluno: 18,
-                nomeAluno: "Fulano 0001",
+                nomeAluno: "Luiz",
                 nomeProva: "FSI",
                 notaFinal: 0
             }, {
                 idAluno: 18,
-                nomeAluno: "Fulano 0001",
+                nomeAluno: "Luiz",
                 nomeProva: "ING",
                 notaFinal: 0
             }, {
                 idAluno: 19,
-                nomeAluno: "Fulano 0002",
+                nomeAluno: "XYZ",
                 nomeProva: "FSI",
                 notaFinal: 0
             }, {
                 idAluno: 19,
-                nomeAluno: "Fulano 0002",
+                nomeAluno: "XYZ",
                 nomeProva: "ING",
                 notaFinal: 0
             }, {
@@ -56,6 +57,7 @@
             }
         ]
     };
+
     var provas = {
         idEdital: 1,
         provasEscritas: [
@@ -134,7 +136,7 @@
 
     app.controller('MainController', function ($scope) {
         $scope.showNotas = false
-        $scope.toggleNotas = function (param) {
+        $scope.toggleTabelaNotas = function (param) {
             $scope.showNotas = !param
         }
         $scope.filtraNome = function () {
@@ -181,7 +183,7 @@
 
             }
         }
-        $scope.testa = function (param) {
+        $scope.displayTabelasNotas = function (param) {
             var alunosDaProva = []
             provaDaTela = param
             for (var i = 0; i < alunosNotas.notas.length; i++) {
@@ -198,7 +200,6 @@
 
             $scope.notasProvaSel = alunosDaProva
             $scope.showNotas = true
-            console.log($scope.notasProvaSel)
         }
         $scope.alunosNotas = alunosNotas
         $scope.provasEscritas = provas
