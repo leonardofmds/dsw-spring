@@ -56,7 +56,7 @@ public class EditalController
 	{
 		return new ModelAndView("edital/list");
 	}
-
+	
 	/**
 	 * Ação AJAX que lista todos os editais
 	 */
