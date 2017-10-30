@@ -1,6 +1,6 @@
 'use strict';
  
-var App = angular.module('ppgiSelecaoApp', ['unirio.dsw', 'ngTable', 'ngSanitize']);
+var App = angular.module('ppgiSelecaoApp', ['unirio.dsw', 'ngTable', 'ngSanitize'], 'projeto.provaEscrita');
 
 var getUrlParameter = function getUrlParameter(sParam) {
     var sPageURL = decodeURIComponent(window.location.search.substring(1)),
