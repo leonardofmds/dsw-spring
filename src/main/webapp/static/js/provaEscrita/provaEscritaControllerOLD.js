@@ -203,28 +203,7 @@
         }
         $scope.alunosNotas = alunosNotas
         $scope.provasEscritas = provas
-        $scope.candidatos = {
-            candidatos: [
-                {
-                    id: 18,
-                    nome: 'Fulano 0001',
-                    email: "fulano0001@somewhere.com"
-                }, {
-                    id: 19,
-                    nome: 'Fulano 0002',
-                    email: "fulano0002@somewhere.com"
-                }, {
-                    id: 20,
-                    nome: 'Fulano 0003',
-                    email: "fulano0003@somewhere.com"
-                }, {
-                    id: 21,
-                    nome: 'Fulano 0004',
-                    email: "fulano0004@somewhere.com"
-                }
-            ]
-        }
-
+       
     });
 
 })();
