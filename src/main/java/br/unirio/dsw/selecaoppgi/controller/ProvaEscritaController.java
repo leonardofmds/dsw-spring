@@ -53,52 +53,11 @@ public class ProvaEscritaController {
 
 	@ResponseBody
 	@RequestMapping(value = "/getAlunos", method = RequestMethod.GET)
-	public String grabAlunosData() {
+	public String grabAlunosData(HttpServletRequest request) {
+		Edital edital = (Edital) request.getSession().getAttribute("edital");
 		return "{\"notas\":[{\"idAluno\":18,\"nomeAluno\":\"Luiz\",\"nomeProva\":\"FSI\",\"notaFinal\":0},{\"idAluno\":18,\"nomeAluno\":\"Luiz\",\"nomeProva\":\"ING\",\"notaFinal\":0},{\"idAluno\":19,\"nomeAluno\":\"XYZ\",\"nomeProva\":\"FSI\",\"notaFinal\":0},{\"idAluno\":19,\"nomeAluno\":\"XYZ\",\"nomeProva\":\"ING\",\"notaFinal\":0},{\"idAluno\":20,\"nomeAluno\":\"Fulano 0003\",\"nomeProva\":\"FSI\",\"notaFinal\":0},{\"idAluno\":20,\"nomeAluno\":\"Fulano 0003\",\"nomeProva\":\"ING\",\"notaFinal\":0},{\"idAluno\":21,\"nomeAluno\":\"Fulano 0004\",\"nomeProva\":\"FSI\",\"notaFinal\":0},{\"idAluno\":21,\"nomeAluno\":\"Fulano 0004\",\"nomeProva\":\"EDG\",\"notaFinal\":12},{\"idAluno\":22,\"nomeAluno\":\"Fulano 0005\",\"nomeProva\":\"FSI\",\"notaFinal\":0},{\"idAluno\":22,\"nomeAluno\":\"Fulano 0005\",\"nomeProva\":\"ING\",\"notaFinal\":0}]}";
 	}
 
-	
-	// Joga na tela as provas somente
-	@ResponseBody
-	@RequestMapping(value = "/inscricao/provas", method = RequestMethod.GET)
-	public String getProvasEdital(HttpServletRequest request) {
-		// Generalizar isso no pacote de servicos
-		Edital edital = (Edital) request.getSession().getAttribute("edital");
 
-		// if ((edital == null || edital.getId() != usuario.getIdEdital()) &&
-		// usuario.getIdEdital() > 0) {
-		// edital = editalDAO.carregaEditalId(usuario.getIdEdital(), userDAO);
-		// request.getSession().setAttribute("edital", edital);
-		// }
-		JsonEditalWriter jw = new JsonEditalWriter();
 
-		return jw.execute(edital).toString();
-
-	}
-
-	@ResponseBody
-	@RequestMapping(value = "/inscricao/prova", method = RequestMethod.GET)
-	public String getAlunosProva(HttpServletRequest request, @ModelAttribute String codigo) {
-
-		// Generalizar isso no pacote de servicos
-		// Edital edital = (Edital) request.getSession().getAttribute("edital");
-
-		// if ((edital == null || edital.getId() != usuario.getIdEdital()) &&
-		// usuario.getIdEdital() > 0) {
-		// edital = editalDAO.carregaEditalId(usuario.getIdEdital(), userDAO);
-		// request.getSession().setAttribute("edital", edital);
-		// }
-
-		// List<InscricaoEdital> inscricoes =
-		// inscricaoEditalDAO.carregaPresencaProvaEscrita(edital.getId(), codigo);
-		Gson gson = new Gson();
-
-		// PEGAR O SERVICE JSON DO GRUPO 1 PRA N ENVIAR UM JSON RETARDADO
-		// return gson.toJson(inscricoes).toString();
-		return "Luiz";
-	}
-
-	// /edital/escrita/presenca
-	// /edital/escrita/notas
-	// /edital/escrita/encerramento
 }
